@@ -55,7 +55,6 @@ const fetchData = async () => {
     let dataToJson = await fetchda.json();
     let sliced = dataToJson.slice(0, 6);
     console.log(sliced);
-
     return sliced;
 };
 
@@ -111,7 +110,6 @@ const createCards = (data) => {
           </div>
         </div>
     `;
-
     return card;
 };
 
@@ -138,7 +136,6 @@ const CreateTabel = () => {
     trThead.className = "p-3";
 
     tabel.append(trThead);
-    // console.log(data);
 
     for (const item of data) {
         let trTbody = document.createElement("tr");
@@ -147,28 +144,28 @@ const CreateTabel = () => {
             'productId',
             'purchasedDate',
             'productIdFake',
-            'productImage'
+            'productImage',
         ];
 
         let prices = [
             'total',
-            'productPrice'
+            'productPrice',
         ];
         for (const [key, value] of Object.entries(item)) {
             if (!noShowItems.includes(key)) {
                 let currency = '';
                 if (prices.includes(key)) {
                     currency = "€ ";
-                };
+                }
                 let td = document.createElement("td");
                 td.className = "px-4 py-2 break-words";
                 td.textContent = `${currency}${value}`;
                 trTbody.append(td);
-            };
-        };
+            }
+        }
 
         tabel.append(trTbody);
-    };
+    }
 
     container.append(tabel);
     container.append(createOrderdButoon());
@@ -208,7 +205,7 @@ const buyEvent = async () => {
                     productImage: img,
                     productIdFake: id,
                     total: Number(price * amount).toFixed(2),
-                    purchasedDate: date
+                    purchasedDate: date,
                 });
             }
             localStorage.setItem("clothesData", JSON.stringify(clothes));
@@ -239,7 +236,7 @@ const showCards = async () => {
     if (!products || products.length === 0) {
         products = await fetchData();
         products.forEach(pro => {
-            pro.productId = self.crypto.randomUUID()
+            pro.productId = self.crypto.randomUUID();
         });
         localStorage.setItem("products", JSON.stringify(products));
     }
@@ -260,7 +257,8 @@ const createOrderdNotifiction = () => {
     div.innerHTML = `
 
         <div
-            class="flex flex-col justify-center text-white items-center rounded-2xl bg-linear-65 from-strong-black to-strong-paars shadow-xs  px-4 py-2.5  gap-5">
+            class="flex flex-col justify-center text-white items-center 
+            rounded-2xl bg-linear-65 from-strong-black to-strong-paars shadow-xs  px-4 py-2.5  gap-5">
             <div class="w-20 h-20">
                 <img src="../images/orderd.svg" alt="" class="w-full h-full">
             </div>
@@ -280,7 +278,8 @@ const createOrderdButoon = () => {
     let order = document.createElement('div');
     order.className = 'w-max rounded-3xl overflow-hidden mt-10 ';
     order.innerHTML = `
-     <button class="flex items-center gap-4 px-6 py-3 bg-linear-to-r cursor-pointer from-strong-black to-strong-paars shadow-md">
+     <button class="flex items-center gap-4 px-6 py-3 bg-linear-to-r cursor-pointer 
+     from-strong-black to-strong-paars shadow-md">
     <div class="w-8 h-8">
       <img src="../images/orderd.svg" alt="order icon" class="w-full h-full">
     </div>
@@ -312,8 +311,7 @@ const createOrderdButoon = () => {
         clothes.length = 0;
         productsTabel();
     });
-    return order
-
+    return order;
 };
 
 const productsTabel = () => {
@@ -352,10 +350,10 @@ const productsTabel = () => {
         ];
         let prices = [
             'total',
-        ]
+        ];
+
         for (const [key, value] of Object.entries(item)) {
             if (!noShowItems.includes(key)) {
-
                 let currency = '';
                 if (prices.includes(key)) {
                     currency = "€ ";
@@ -364,15 +362,13 @@ const productsTabel = () => {
                 td.className = "px-4 py-2 break-words";
                 td.textContent = `${currency}${value}`;
                 trTbody.append(td);
-
             }
-
         }
         tabel.append(trTbody);
 
         container.append(tabel);
     }
-}
+};
 
 const createJson = () => {
     let containerPlus = document.createElement('div');
