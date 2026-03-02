@@ -388,8 +388,6 @@ const createJson = () => {
          </div>
         </div>
     `;
-
-
     return containerPlus;
 };
 
@@ -398,7 +396,7 @@ const AddJson = async () => {
     json.addEventListener(('click'), async () => {
         const data = await fetchData();
         data.forEach(pro => {
-            pro.productId = self.crypto.randomUUID()
+            pro.productId = self.crypto.randomUUID();
         });
         localStorage.setItem('products', JSON.stringify(data));
         productsTabelPage();
@@ -430,7 +428,6 @@ const productsTabelPage = () => {
         th.textContent = head;
         trThead.append(th);
     });
-
     trThead.className = "p-3";
 
     tabel.append(trThead);
@@ -450,7 +447,6 @@ const productsTabelPage = () => {
             }
             trTbody.append(td);
         });
-
         let tdActie = document.createElement('td');
 
 
@@ -469,7 +465,7 @@ const productsTabelPage = () => {
         buttonEdit.className = 'edit p-5 py-1 bg-blue-600 text-white rounded-lg cursor-pointer';
         tdActie.append(buttonEdit);
 
-        trTbody.append(tdActie)
+        trTbody.append(tdActie);
 
         tabel.append(trTbody);
     }
@@ -490,24 +486,16 @@ const productsTabelPage = () => {
 
             localStorage.setItem('editProduct', JSON.stringify(editProduct));
             window.location.href = 'editProducts.php';
-
         }
     });
     container.append(createJson());
     container.append(tabel);
-
     AddJson();
-
 };
 
 
 const addProducts = () => {
-
-
-
     let save = document.getElementById('save');
-
-
     save.addEventListener(('click'), () => {
         let naam = document.getElementById('naam').value;
         let prijs = Number(document.getElementById('prijs').value);
@@ -538,7 +526,6 @@ const addProducts = () => {
         createImg.src = img2;
         previewContainer.append(createImg);
     });
-
 };
 
 
@@ -551,14 +538,14 @@ const editProducts = () => {
     let previewContainer = document.getElementById('preview-img-edit');
 
 
-    const products = JSON.parse(localStorage.getItem('products'));
+    const product = JSON.parse(localStorage.getItem('products'));
     const pro = JSON.parse(localStorage.getItem('editProduct'));
 
-    const index = products.findIndex(p => p.productId === pro.productId);
+    const index = product.findIndex(p => p.productId === pro.productId);
 
-    naam.value = products[index].title;
-    prijs.value = products[index].price;
-    img.value = products[index].image;
+    naam.value = product[index].title;
+    prijs.value = product[index].price;
+    img.value = product[index].image;
 
     previewBtn.addEventListener('click', () => {
         previewContainer.innerHTML = '';
@@ -569,15 +556,15 @@ const editProducts = () => {
     });
 
     saveBtn.addEventListener('click', () => {
-        products[index].title = naam.value;
-        products[index].price = Number(prijs.value);
-        products[index].image = img.value;
+        product[index].title = naam.value;
+        product[index].price = Number(prijs.value);
+        product[index].image = img.value;
 
-        localStorage.setItem('products', JSON.stringify(products));
+        localStorage.setItem('products', JSON.stringify(product));
         localStorage.removeItem('editProduct');
         window.location.href = 'index.php';
     });
-}
+};
 document.addEventListener("DOMContentLoaded", () => {
     showCards();
     productsTabelPage();
