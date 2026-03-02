@@ -82,7 +82,9 @@ const createCards = (data) => {
               <div>
     <div>
         <label for="amount" class="block mb-2 text-white font-semibold">Choose quanitity</label>
-        <select name="" id="amount"  class=" amount w-full bg-gray-100 border border-gray-300 rounded-lg shadow-sm p-2 text-center text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
+        <select name="" id="amount"  class=" amount w-full bg-gray-100 border 
+        border-gray-300 rounded-lg shadow-sm p-2 text-center text-gray-800 focus:outline-none
+         focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -151,22 +153,22 @@ const CreateTabel = () => {
         let prices = [
             'total',
             'productPrice'
-        ]
+        ];
         for (const [key, value] of Object.entries(item)) {
             if (!noShowItems.includes(key)) {
                 let currency = '';
                 if (prices.includes(key)) {
                     currency = "€ ";
-                }
+                };
                 let td = document.createElement("td");
                 td.className = "px-4 py-2 break-words";
                 td.textContent = `${currency}${value}`;
                 trTbody.append(td);
-            }
-        }
+            };
+        };
 
         tabel.append(trTbody);
-    }
+    };
 
     container.append(tabel);
     container.append(createOrderdButoon());
@@ -385,12 +387,10 @@ const createJson = () => {
             </a>
          </div>
          <div class="">
-        <a href="adminOrders.php" target="_blank" class="w-full h-full font-semibold bg-strong-red text-white p-3 rounded-xl">Orders</a>
+        <a href="adminOrders.php" target="_blank" class="w-full h-full 
+        font-semibold bg-strong-red text-white p-3 rounded-xl">Orders</a>
          </div>
         </div>
-        
-
-
     `;
 
 
