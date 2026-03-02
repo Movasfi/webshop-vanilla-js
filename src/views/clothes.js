@@ -199,7 +199,7 @@ const buyEvent = async () => {
                     productTitel: title,
                     productPrice: Number(price),
                     aantal: amount,
-                    productId: self.crypto.randomUUID(),
+                    productId: crypto.randomUUID(),
                     productImage: img,
                     productIdFake: id,
                     total: Number(price * amount).toFixed(2),
@@ -234,7 +234,7 @@ const showCards = async () => {
     if (!products || products.length === 0) {
         products = await fetchData();
         products.forEach(pro => {
-            pro.productId = self.crypto.randomUUID();
+            pro.productId = crypto.randomUUID();
         });
         localStorage.setItem("products", JSON.stringify(products));
     }
@@ -394,7 +394,7 @@ const AddJson = async () => {
     json.addEventListener(('click'), async () => {
         const data = await fetchData();
         data.forEach(pro => {
-            pro.productId = self.crypto.randomUUID();
+            pro.productId = crypto.randomUUID();
         });
         localStorage.setItem('products', JSON.stringify(data));
         productsTabelPage();
@@ -494,6 +494,7 @@ const productsTabelPage = () => {
 
 const addProducts = () => {
     let save = document.getElementById('save');
+    if (!save) return;
     save.addEventListener(('click'), () => {
         let naam = document.getElementById('naam').value;
         let prijs = Number(document.getElementById('prijs').value);
@@ -507,7 +508,7 @@ const addProducts = () => {
             price: prijs,
             image: img,
             id: data.length + 1,
-            productId: self.crypto.randomUUID(),
+            productId: crypto.randomUUID(),
         });
         console.log(data);
         localStorage.setItem('products', JSON.stringify(data));
@@ -538,7 +539,7 @@ const editProducts = () => {
 
     const product = JSON.parse(localStorage.getItem('products'));
     const pro = JSON.parse(localStorage.getItem('editProduct'));
-
+    if (!pro) return;
     const index = product.findIndex(p => p.productId === pro.productId);
 
     naam.value = product[index].title;
