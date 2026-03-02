@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Outfit:wght@100..900&display=swap");
+
+@theme {
+  --breakpoint-telefoon: 748px;
+  --breakpoint-laptop: 1200px;
+
+  --color-strong-black: #1e1e24;
+  --color-strong-red: #92140c;
+  --color-strong-paars: #8d99ae;
+
+  --font-AC: "Bruno Ace SC", "cursive";
+  --font-outfit: "Outfit", sans-serif;
+  --font-pin: "Pin Sans", "sans-serif";
+}
