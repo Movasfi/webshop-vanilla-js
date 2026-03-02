@@ -188,9 +188,7 @@ const buyEvent = async () => {
         buyBtn.addEventListener("click", () => {
             let amount = Number(parentCard.querySelector('.amount').value);
             const date = new Date().toLocaleString('nl-NL', { timeZone: "Europe/Amsterdam" });
-            let vind = clothes.find((da) => {
-                return da.productTitel === title;
-            });
+            let vind = clothes.find((da) => da.productTitel === title);
 
             if (vind) {
                 vind.productPrice = Number(vind.productPrice);
