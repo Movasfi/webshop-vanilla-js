@@ -187,7 +187,6 @@ const CreateTabel = () => {
                 for (const key of rowOrder) {
                     const td = document.createElement("td");
                     td.className = "px-4 py-2 break-words";
-
                     if (prices.includes(key)) {
                         td.textContent = `€ ${item[key]}`;
                     } else if (key === "aantal") {
@@ -208,14 +207,11 @@ const CreateTabel = () => {
                             aantalWaarde.textContent = item[key];
                             total.textContent = Number(item['total']).toFixed(2);
                         });
-
-
                         let min = document.createElement('button');
                         min.className = 'p-2';
                         min.textContent = "-";
                         min.addEventListener(('click'), (e) => {
                             let total = e.target.parentElement.nextSibling;
-
                             if (item[key] >= 1) {
                                 let price = Number(item['productPrice']);
                                 item[key]--;
@@ -236,21 +232,18 @@ const CreateTabel = () => {
                                 total.textContent = Number(item['total']).toFixed(2);
                             }
                         });
-
                         td.append(min, aantalWaarde, plus);
                     } else if (key === "total") {
                         console.log(Number(item[key]));
 
                         td.textContent = item[key];
                         console.log(td.innerText);
-
                     }
                     else {
                         td.textContent = item[key];
                     }
                     trTbody.append(td);
                 }
-
                 tabel.append(trTbody);
             }
             container.append(clearCart());
@@ -397,7 +390,7 @@ const createOrderdButoon = () => {
             orderId: Date.now(),
             orderDate: new Date().toLocaleString('nl-NL', { timeZone: "Europe/Amsterdam" }),
             items: orderdData2,
-        }
+        };
 
         orderdData.push(buyData);
         localStorage.setItem("orderdData", JSON.stringify(orderdData));
@@ -415,7 +408,6 @@ const productsTabel = () => {
 
     if (data && container) {
         console.log(data.items);
-
         let headData = ["Titel", "Totaal", "Datu en Tijd"];
         let tabel = document.createElement("table");
         tabel.className =
@@ -434,11 +426,10 @@ const productsTabel = () => {
         tabel.append(trThead);
 
         for (const order of data) {
-
             let trThead = document.createElement('tr');
             let tdhead = document.createElement('td');
             tdhead.setAttribute('colspan', 3);
-            tdhead.className = "text-left pt-5 sm:pl-10 pl-3 md:pl-20 lg:pl-52  font-semibold"
+            tdhead.className = "text-left pt-5 sm:pl-10 pl-3 md:pl-20 lg:pl-52  font-semibold";
             tdhead.textContent = `Order id ${order.orderId}`;
             trThead.append(tdhead);
             tabel.append(trThead);
@@ -468,13 +459,10 @@ const productsTabel = () => {
                 });
                 tabel.append(trTbody);
             }
-
             container.append(tabel);
         }
-
     }
-
-}
+};
 
 
 const createJson = () => {
@@ -625,7 +613,7 @@ const addProducts = () => {
         localStorage.setItem('products', JSON.stringify(data));
         productsTabelPage();
         showCards();
-        window.location.href = "index.html"
+        window.location.href = "index.html";
     });
     let previewContainer = document.getElementById('preview-img');
 
