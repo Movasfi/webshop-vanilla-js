@@ -187,6 +187,17 @@ const CreateTabel = () => {
                         let plus = document.createElement("button");
                         plus.className = "p-2";
                         plus.textContent = "+";
+                        plus.addEventListener("click", (e) => {
+                            let total = e.target.parentElement.nextSibling;
+                            let price = Number(item["productPrice"]);
+                            item[key]++;
+                            item["total"] = Number(item[key] * price).toFixed(2);
+
+                            localStorage.setItem("clothesData", JSON.stringify(data));
+
+                            aantalWaarde.textContent = item[key];
+                            total.textContent = Number(item["total"]).toFixed(2);
+                        });
                         let min = document.createElement("button");
                         min.className = "p-2";
                         min.textContent = "-";
@@ -203,12 +214,12 @@ const CreateTabel = () => {
                                 total.textContent = Number(item["total"]).toFixed(2);
                             }
                             if (item[key] <= 0) {
-                                data = data.filter(
+                                trTbody.remove();
+                                newData = data.filter(
                                     (clo) => clo.productIdFake !== item["productIdFake"],
                                 );
-                                trTbody.remove();
-                                localStorage.setItem("clothesData", JSON.stringify(data));
 
+                                localStorage.setItem("clothesData", JSON.stringify(newData));
                                 aantalWaarde.textContent = item[key];
                                 console.log(Number(item["total"]));
                                 total.textContent = Number(item["total"]).toFixed(2);
