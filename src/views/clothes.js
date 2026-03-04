@@ -130,11 +130,11 @@ const clearCart = () => {
     const imgContainer = document.createElement('span');
     let trush = document.createElement('img');
     imgContainer.append(trush);
-    trush.className = 'w-6 h-6'
+    trush.className = 'w-6 h-6';
     trush.src = '../images/trash.svg';
-    trush.style.width = '30px'
-    trush.style.height = '30px'
-    trush.style.cursor = 'pointer'
+    trush.style.width = '30px';
+    trush.style.height = '30px';
+    trush.style.cursor = 'pointer';
     trush.addEventListener(('click'), () => {
         localStorage.removeItem('clothesData');
         clothes = [];
@@ -152,91 +152,93 @@ const CreateTabel = () => {
     let data = JSON.parse(localStorage.getItem("clothesData"));
     if (data && container) {
         if (data.length === 0) {
-            return container.remove;
-        }
-
-        let headData = ["Title", "Price", "Aantal", "Total"];
-        let tabel = document.createElement("table");
-        tabel.className =
-            "min-w-full border text-center  table-fixed text-[12px] sm:text-base tabel";
-        let trThead = document.createElement("tr");
-
-        headData.forEach((item) => {
-            let th = document.createElement("th");
-            th.className = "py-2 break-words max-w-[120px]";
-            th.textContent = item;
-            trThead.append(th);
-        });
-
-        trThead.className = "p-3";
-
-        tabel.append(trThead);
-
-        for (const item of data) {
-            console.log(item);
-            let prices = [
-                'total',
-                'productPrice',
-            ];
-            const trTbody = document.createElement("tr");
-
-            const rowOrder = ["productTitel", "productPrice", "aantal", "total"];
-
-            rowOrder.forEach(key => {
-                const td = document.createElement("td");
-                td.className = "px-4 py-2 break-words";
-
-                if (prices.includes(key)) {
-                    td.textContent = `€ ${item[key]}`;
-                } else if (key === "aantal") {
-                    let aantalWaarde = document.createElement('span');
-                    aantalWaarde.textContent = item[key];
-
-                    let plus = document.createElement('button');
-                    plus.className = 'p-2'
-                    plus.textContent = "+";
-                    plus.addEventListener(('click'), () => {
-                        let price = Number(item['productPrice'])
-                        item[key]++;
-                        item['total'] = Number(item[key] * price).toFixed(2);
-                        localStorage.setItem('clothesData', JSON.stringify(data));
-                        CreateTabel()
-                    });
+            container.remove;
+        } else {
 
 
-                    let min = document.createElement('button');
-                    min.className = 'p-2'
-                    min.textContent = "-";
-                    min.addEventListener(('click'), () => {
-                        if (item[key] >= 1) {
-                            let price = Number(item['productPrice'])
-                            item[key]--;
+
+            let headData = ["Title", "Price", "Aantal", "Total"];
+            let tabel = document.createElement("table");
+            tabel.className =
+                "min-w-full border text-center  table-fixed text-[12px] sm:text-base tabel";
+            let trThead = document.createElement("tr");
+
+            headData.forEach((item) => {
+                let th = document.createElement("th");
+                th.className = "py-2 break-words max-w-[120px]";
+                th.textContent = item;
+                trThead.append(th);
+            });
+
+            trThead.className = "p-3";
+
+            tabel.append(trThead);
+
+            for (const item of data) {
+                console.log(item);
+                let prices = [
+                    'total',
+                    'productPrice',
+                ];
+                const trTbody = document.createElement("tr");
+
+                const rowOrder = ["productTitel", "productPrice", "aantal", "total"];
+
+                rowOrder.forEach(key => {
+                    const td = document.createElement("td");
+                    td.className = "px-4 py-2 break-words";
+
+                    if (prices.includes(key)) {
+                        td.textContent = `€ ${item[key]}`;
+                    } else if (key === "aantal") {
+                        let aantalWaarde = document.createElement('span');
+                        aantalWaarde.textContent = item[key];
+
+                        let plus = document.createElement('button');
+                        plus.className = 'p-2';
+                        plus.textContent = "+";
+                        plus.addEventListener(('click'), () => {
+                            let price = Number(item['productPrice']);
+                            item[key]++;
                             item['total'] = Number(item[key] * price).toFixed(2);
                             localStorage.setItem('clothesData', JSON.stringify(data));
-                            CreateTabel()
-                        }
-                        if (item[key] <= 0) {
-                            data = data.filter(clo => clo.productIdFake !== item['productIdFake']);
-                            trTbody.remove();
-                            localStorage.setItem('clothesData', JSON.stringify(data));
-                            CreateTabel()
-                        }
-                    });
+                            CreateTabel();
+                        });
 
-                    td.append(min, aantalWaarde, plus);
-                } else {
-                    td.textContent = item[key];
-                }
-                trTbody.append(td);
-            });
-            tabel.append(trTbody);
+
+                        let min = document.createElement('button');
+                        min.className = 'p-2';
+                        min.textContent = "-";
+                        min.addEventListener(('click'), () => {
+                            if (item[key] >= 1) {
+                                let price = Number(item['productPrice']);
+                                item[key]--;
+                                item['total'] = Number(item[key] * price).toFixed(2);
+                                localStorage.setItem('clothesData', JSON.stringify(data));
+                                CreateTabel();
+                            }
+                            if (item[key] <= 0) {
+                                data = data.filter(clo => clo.productIdFake !== item['productIdFake']);
+                                trTbody.remove();
+                                localStorage.setItem('clothesData', JSON.stringify(data));
+                                CreateTabel();
+                            }
+                        });
+
+                        td.append(min, aantalWaarde, plus);
+                    } else {
+                        td.textContent = item[key];
+                    }
+                    trTbody.append(td);
+                });
+                tabel.append(trTbody);
+            }
+            container.append(clearCart());
+            container.append(tabel);
+            container.append(createOrderdButoon());
         }
-        container.append(clearCart());
-        container.append(tabel);
-        container.append(createOrderdButoon());
     }
-
-}
+};
 
 const buyEvent = async () => {
 
@@ -372,9 +374,9 @@ const createOrderdButoon = () => {
         let orderdData2 = JSON.parse(localStorage.getItem('clothesData'));
 
         let buyData = {
-            "orderId": Date.now(),
-            "orderDate": new Date().toLocaleString('nl-NL', { timeZone: "Europe/Amsterdam" }),
-            "items": orderdData2
+            orderId: Date.now(),
+            orderDate: new Date().toLocaleString('nl-NL', { timeZone: "Europe/Amsterdam" }),
+            items: orderdData2,
         }
 
         orderdData.push(buyData);
