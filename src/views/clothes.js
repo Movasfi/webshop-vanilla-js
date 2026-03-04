@@ -215,7 +215,7 @@ const CreateTabel = () => {
                             }
                             if (item[key] <= 0) {
                                 trTbody.remove();
-                                newData = data.filter(
+                                let newData = data.filter(
                                     (clo) => clo.productIdFake !== item["productIdFake"],
                                 );
 
