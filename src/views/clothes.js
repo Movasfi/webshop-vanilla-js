@@ -154,6 +154,9 @@ const CreateTabel = () => {
         if (data.length === 0) {
             container.remove();
         } else {
+
+
+
             let headData = ["Title", "Price", "Aantal", "Total"];
             let tabel = document.createElement("table");
             tabel.className =
@@ -174,15 +177,14 @@ const CreateTabel = () => {
             for (const item of data) {
                 console.log(item);
                 let prices = [
-                    'total',
                     'productPrice',
                 ];
+
                 const trTbody = document.createElement("tr");
 
                 const rowOrder = ["productTitel", "productPrice", "aantal", "total"];
 
                 for (const key of rowOrder) {
-
                     const td = document.createElement("td");
                     td.className = "px-4 py-2 break-words";
 
@@ -195,33 +197,55 @@ const CreateTabel = () => {
                         let plus = document.createElement('button');
                         plus.className = 'p-2';
                         plus.textContent = "+";
-                        plus.addEventListener(('click'), () => {
+                        plus.addEventListener(('click'), (e) => {
+                            let total = e.target.parentElement.nextSibling;
                             let price = Number(item['productPrice']);
                             item[key]++;
                             item['total'] = Number(item[key] * price).toFixed(2);
+
                             localStorage.setItem('clothesData', JSON.stringify(data));
+
+                            aantalWaarde.textContent = item[key];
+                            total.textContent = Number(item['total']).toFixed(2);
                         });
 
 
                         let min = document.createElement('button');
                         min.className = 'p-2';
                         min.textContent = "-";
-                        min.addEventListener(('click'), () => {
+                        min.addEventListener(('click'), (e) => {
+                            let total = e.target.parentElement.nextSibling;
+
                             if (item[key] >= 1) {
                                 let price = Number(item['productPrice']);
                                 item[key]--;
                                 item['total'] = Number(item[key] * price).toFixed(2);
                                 localStorage.setItem('clothesData', JSON.stringify(data));
+
+                                aantalWaarde.textContent = item[key];
+                                console.log(Number(item['total']));
+                                total.textContent = Number(item['total']).toFixed(2);
                             }
                             if (item[key] <= 0) {
                                 data = data.filter(clo => clo.productIdFake !== item['productIdFake']);
                                 trTbody.remove();
                                 localStorage.setItem('clothesData', JSON.stringify(data));
+
+                                aantalWaarde.textContent = item[key];
+                                console.log(Number(item['total']));
+                                total.textContent = Number(item['total']).toFixed(2);
                             }
                         });
 
                         td.append(min, aantalWaarde, plus);
-                    } else {
+                    } else if (key === "total") {
+                        console.log(Number(item[key]));
+
+                        td.textContent = item[key];
+                        console.log(td.innerText);
+
+                    }
+                    else {
                         td.textContent = item[key];
                     }
                     trTbody.append(td);
@@ -237,6 +261,7 @@ const CreateTabel = () => {
 };
 
 const buyEvent = async () => {
+
     let buyBtns = document.querySelectorAll(".buy");
     let data = JSON.parse(localStorage.getItem("products"));
 
@@ -372,7 +397,7 @@ const createOrderdButoon = () => {
             orderId: Date.now(),
             orderDate: new Date().toLocaleString('nl-NL', { timeZone: "Europe/Amsterdam" }),
             items: orderdData2,
-        };
+        }
 
         orderdData.push(buyData);
         localStorage.setItem("orderdData", JSON.stringify(orderdData));
@@ -407,15 +432,18 @@ const productsTabel = () => {
         trThead.className = "p-3";
 
         tabel.append(trThead);
+
         for (const order of data) {
-            let trTheadOrder = document.createElement('tr');
+
+            let trThead = document.createElement('tr');
             let tdhead = document.createElement('td');
             tdhead.setAttribute('colspan', 3);
-            tdhead.className = "text-left pt-5 sm:pl-10 pl-3 md:pl-20 lg:pl-52  font-semibold";
+            tdhead.className = "text-left pt-5 sm:pl-10 pl-3 md:pl-20 lg:pl-52  font-semibold"
             tdhead.textContent = `Order id ${order.orderId}`;
-            trTheadOrder.append(tdhead);
-            tabel.append(trTheadOrder);
+            trThead.append(tdhead);
+            tabel.append(trThead);
             for (const item of order.items) {
+
                 let trTbody = document.createElement("tr");
                 const rowOrder = ["productTitel", "total", "purchasedDate"];
 
@@ -440,10 +468,13 @@ const productsTabel = () => {
                 });
                 tabel.append(trTbody);
             }
+
             container.append(tabel);
         }
+
     }
-};
+
+}
 
 
 const createJson = () => {
@@ -594,7 +625,7 @@ const addProducts = () => {
         localStorage.setItem('products', JSON.stringify(data));
         productsTabelPage();
         showCards();
-        window.location.href = "index.html";
+        window.location.href = "index.html"
     });
     let previewContainer = document.getElementById('preview-img');
 
