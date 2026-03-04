@@ -176,6 +176,7 @@ const CreateTabel = () => {
                 const rowOrder = ["productTitel", "productPrice", "aantal", "total"];
 
                 for (const key of rowOrder) {
+                    const currentItem = item;
                     const td = document.createElement("td");
                     td.className = "px-4 py-2 break-words";
                     if (prices.includes(key)) {
@@ -183,54 +184,44 @@ const CreateTabel = () => {
                     } else if (key === "aantal") {
                         let aantalWaarde = document.createElement("span");
                         aantalWaarde.textContent = item[key];
+                        aantalWaarde.className = 'p-3'
 
-                        let plus = document.createElement("button");
-                        plus.className = "p-2";
+                        const plus = document.createElement("button");
                         plus.textContent = "+";
                         plus.addEventListener("click", (e) => {
                             let total = e.target.parentElement.nextSibling;
-                            let price = Number(item["productPrice"]);
-                            item[key]++;
-                            item["total"] = Number(item[key] * price).toFixed(2);
+                            let price = Number(currentItem["productPrice"]);
+                            currentItem[key]++;
+                            currentItem["total"] = Number(currentItem[key] * price).toFixed(2);
 
                             localStorage.setItem("clothesData", JSON.stringify(data));
 
-                            aantalWaarde.textContent = item[key];
-                            total.textContent = Number(item["total"]).toFixed(2);
+                            aantalWaarde.textContent = currentItem[key];
+                            total.textContent = Number(currentItem["total"]).toFixed(2);
                         });
-                        let min = document.createElement("button");
-                        min.className = "p-2";
+
+                        const min = document.createElement("button");
                         min.textContent = "-";
                         min.addEventListener("click", (e) => {
                             let total = e.target.parentElement.nextSibling;
-                            if (item[key] >= 1) {
-                                let price = Number(item["productPrice"]);
-                                item[key]--;
-                                item["total"] = Number(item[key] * price).toFixed(2);
+                            if (currentItem[key] >= 1) {
+                                let price = Number(currentItem["productPrice"]);
+                                currentItem[key]--;
+                                currentItem["total"] = Number(currentItem[key] * price).toFixed(2);
                                 localStorage.setItem("clothesData", JSON.stringify(data));
 
-                                aantalWaarde.textContent = item[key];
-                                console.log(Number(item["total"]));
-                                total.textContent = Number(item["total"]).toFixed(2);
+                                aantalWaarde.textContent = currentItem[key];
+                                total.textContent = Number(currentItem["total"]).toFixed(2);
                             }
-                            if (item[key] <= 0) {
+                            if (currentItem[key] <= 0) {
                                 data = data.filter(
-                                    (clo) => clo.productIdFake !== item["productIdFake"],
+                                    (clo) => clo.productIdFake !== currentItem["productIdFake"]
                                 );
                                 trTbody.remove();
                                 localStorage.setItem("clothesData", JSON.stringify(data));
-
-                                aantalWaarde.textContent = item[key];
-                                console.log(Number(item["total"]));
-                                total.textContent = Number(item["total"]).toFixed(2);
                             }
                         });
                         td.append(min, aantalWaarde, plus);
-                    } else if (key === "total") {
-                        console.log(Number(item[key]));
-
-                        td.textContent = item[key];
-                        console.log(td.innerText);
                     } else {
                         td.textContent = item[key];
                     }
