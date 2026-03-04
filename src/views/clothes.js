@@ -154,9 +154,6 @@ const CreateTabel = () => {
         if (data.length === 0) {
             container.remove;
         } else {
-
-
-
             let headData = ["Title", "Price", "Aantal", "Total"];
             let tabel = document.createElement("table");
             tabel.className =
@@ -241,7 +238,6 @@ const CreateTabel = () => {
 };
 
 const buyEvent = async () => {
-
     let buyBtns = document.querySelectorAll(".buy");
     let data = JSON.parse(localStorage.getItem("products"));
 
@@ -377,7 +373,7 @@ const createOrderdButoon = () => {
             orderId: Date.now(),
             orderDate: new Date().toLocaleString('nl-NL', { timeZone: "Europe/Amsterdam" }),
             items: orderdData2,
-        }
+        };
 
         orderdData.push(buyData);
         localStorage.setItem("orderdData", JSON.stringify(orderdData));
@@ -412,18 +408,15 @@ const productsTabel = () => {
         trThead.className = "p-3";
 
         tabel.append(trThead);
-
         for (const order of data) {
-
-            let trThead = document.createElement('tr');
+            let trTheadOrder = document.createElement('tr');
             let tdhead = document.createElement('td');
             tdhead.setAttribute('colspan', 3);
-            tdhead.className = "text-left pt-5 sm:pl-10 pl-3 md:pl-20 lg:pl-52  font-semibold"
+            tdhead.className = "text-left pt-5 sm:pl-10 pl-3 md:pl-20 lg:pl-52  font-semibold";
             tdhead.textContent = `Order id ${order.orderId}`;
-            trThead.append(tdhead);
-            tabel.append(trThead);
+            trTheadOrder.append(tdhead);
+            tabel.append(trTheadOrder);
             for (const item of order.items) {
-
                 let trTbody = document.createElement("tr");
                 const rowOrder = ["productTitel", "total", "purchasedDate"];
 
@@ -448,13 +441,10 @@ const productsTabel = () => {
                 });
                 tabel.append(trTbody);
             }
-
             container.append(tabel);
         }
-
     }
-
-}
+};
 
 
 const createJson = () => {
@@ -605,7 +595,7 @@ const addProducts = () => {
         localStorage.setItem('products', JSON.stringify(data));
         productsTabelPage();
         showCards();
-        window.location.href = "index.html"
+        window.location.href = "index.html";
     });
     let previewContainer = document.getElementById('preview-img');
 
