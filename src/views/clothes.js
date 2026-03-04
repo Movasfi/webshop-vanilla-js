@@ -152,7 +152,7 @@ const CreateTabel = () => {
     let data = JSON.parse(localStorage.getItem("clothesData"));
     if (data && container) {
         if (data.length === 0) {
-            container.remove;
+            container.remove();
         } else {
             let headData = ["Title", "Price", "Aantal", "Total"];
             let tabel = document.createElement("table");
@@ -199,7 +199,6 @@ const CreateTabel = () => {
                             item[key]++;
                             item['total'] = Number(item[key] * price).toFixed(2);
                             localStorage.setItem('clothesData', JSON.stringify(data));
-                            CreateTabel();
                         });
 
 
@@ -212,13 +211,11 @@ const CreateTabel = () => {
                                 item[key]--;
                                 item['total'] = Number(item[key] * price).toFixed(2);
                                 localStorage.setItem('clothesData', JSON.stringify(data));
-                                CreateTabel();
                             }
                             if (item[key] <= 0) {
                                 data = data.filter(clo => clo.productIdFake !== item['productIdFake']);
                                 trTbody.remove();
                                 localStorage.setItem('clothesData', JSON.stringify(data));
-                                CreateTabel();
                             }
                         });
 
