@@ -121,12 +121,12 @@ const createCards = (data) => {
 
 const clearCart = () => {
     let clear = document.createElement('div');
-    clear.className = 'clear w-full h-20 flex justify-between items-center p-5'
+    clear.className = 'clear w-full h-20 flex justify-between items-center p-5';
     const aContainer = document.createElement('div');
     const terugHome = document.createElement('a');
     terugHome.href = 'index.html';
     terugHome.textContent = 'Terug';
-    terugHome.className = 'bg-strong-red p-3 text-sm text-white rounded-xl'
+    terugHome.className = 'bg-strong-red p-3 text-sm text-white rounded-xl';
     const imgContainer = document.createElement('span');
     let trush = document.createElement('img');
     imgContainer.append(trush);
