@@ -419,14 +419,14 @@ const productsTabel = () => {
         tabel.append(trThead);
 
         for (const order of data) {
-            let trThead = document.createElement("tr");
+            let trThead2 = document.createElement("tr");
             let tdhead = document.createElement("td");
             tdhead.setAttribute("colspan", 3);
             tdhead.className =
                 "text-left pt-5 sm:pl-10 pl-3 md:pl-20 lg:pl-52  font-semibold";
             tdhead.textContent = `Order id ${order.orderId}`;
-            trThead.append(tdhead);
-            tabel.append(trThead);
+            trThead2.append(tdhead);
+            tabel.append(trThead2);
             for (const item of order.items) {
                 let trTbody = document.createElement("tr");
                 const rowOrder = ["productTitel", "total", "purchasedDate"];
