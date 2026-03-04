@@ -187,7 +187,6 @@ const CreateTabel = () => {
                         let plus = document.createElement("button");
                         plus.className = "p-2";
                         plus.textContent = "+";
-                       
                         let min = document.createElement("button");
                         min.className = "p-2";
                         min.textContent = "-";
@@ -216,7 +215,7 @@ const CreateTabel = () => {
                             }
                         });
                         td.append(min, aantalWaarde, plus);
-                    }  else {
+                    } else {
                         td.textContent = item[key];
                     }
                     trTbody.append(td);
