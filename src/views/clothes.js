@@ -214,12 +214,24 @@ const CreateTabel = () => {
                                 total.textContent = Number(item["total"]).toFixed(2);
                             }
                             if (item[key] <= 0) {
+                                console.log("test");
+
                                 trTbody.remove();
-                                let newData = data.filter(
+
+                                data = data.filter(
                                     (clo) => clo.productIdFake !== item["productIdFake"],
                                 );
+                                localStorage.removeItem('clothesData')
+                                console.log(data);
 
-                                localStorage.setItem("clothesData", JSON.stringify(newData));
+                                if (data.length === 0) {
+                                    console.log("voor", data.length);
+
+                                    container.remove();
+                                    console.log("na", data.length);
+
+                                }
+                                localStorage.setItem("clothesData", JSON.stringify(data));
                                 aantalWaarde.textContent = item[key];
                                 console.log(Number(item["total"]));
                                 total.textContent = Number(item["total"]).toFixed(2);
