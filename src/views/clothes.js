@@ -181,7 +181,8 @@ const CreateTabel = () => {
 
                 const rowOrder = ["productTitel", "productPrice", "aantal", "total"];
 
-                rowOrder.forEach(key => {
+                for (const key of rowOrder) {
+
                     const td = document.createElement("td");
                     td.className = "px-4 py-2 break-words";
 
@@ -224,7 +225,8 @@ const CreateTabel = () => {
                         td.textContent = item[key];
                     }
                     trTbody.append(td);
-                });
+                }
+
                 tabel.append(trTbody);
             }
             container.append(clearCart());
