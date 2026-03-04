@@ -1,7 +1,7 @@
 <!-- Header -->
 <header class="fixed flex justify-between items-center p-2 bg-strong-red w-full z-50">
     <div class="w-28 h-20 object-cover cursor-pointer">
-        <img src="/src/images/Lilio.svg" alt="" class="invert w-full h-full" />
+        <img src="../images/Lilio.svg" alt="" class="invert w-full h-full" />
     </div>
 
     <!-- Navbar inside Header  -->
@@ -19,7 +19,7 @@
     <!-- Direct the user to the Shopbag page  -->
     <div class="w-10 h-8 pr-3 hidden telefoon:block">
         <a href="winkelWagen.php" target="_blank">
-            <img src="/src/images/shopping-bag.png" alt="" class="invert w-full h-full object-cover" />
+            <img src="../images/shopping-bag.png" alt="" class="invert w-full h-full object-cover" />
         </a>
     </div>
 
@@ -50,7 +50,7 @@
             class="cursor-pointer hover:text-strong-red transition-all hover:scale-105 scale-100 duration-200 hover:bg-white p-3.5 rounded-2xl">New
             Items</a>
         <a href="winkelWagen.php" class="w-8 h-8 block telefoon:hidden transition-all hover:scale-105 scale-100 ">
-            <img src="/src/images/shopping-bag.png" alt="" class="invert w-full h-full" />
+            <img src="../images/shopping-bag.png" alt="" class="invert w-full h-full" />
         </a>
     </div>
 </div>

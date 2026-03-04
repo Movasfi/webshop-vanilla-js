@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../style.css" rel="stylesheet" />
+    <title>Winkel Wagen</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="fixed flex justify-between items-center p-2 bg-strong-red w-full z-50">
+        <div class="w-28 h-20 object-cover cursor-pointer">
+            <img src="../images/Lilio.svg" alt="" class="invert w-full h-full" />
+        </div>
+
+        <!-- Navbar inside Header  -->
+        <nav class="text-white font-AC hidden telefoon:flex">
+            <ul class="flex gap-10 justify-center items-center text-xl">
+                <a href="index.html">
+                    <li class="cursor-pointer">Home</li>
+                </a>
+                <li class="cursor-pointer">About Us</li>
+                <li class="cursor-pointer">Contact</li>
+                <li class="cursor-pointer">New Items</li>
+            </ul>
+        </nav>
+
+        <!-- Direct the user to the Shopbag page  -->
+        <div class="w-10 h-8 pr-3 hidden telefoon:block">
+            <a href="winkelWagen.html" target="_blank">
+                <img src="../images/shopping-bag.png" alt="" class="invert w-full h-full object-cover" />
+            </a>
+        </div>
+
+        <!-- Hamburger Menu icon -->
+        <button class="relative flex gap-1.5 flex-col pr-3 cursor-pointer telefoon:hidden ham">
+            <div id="dot-1"
+                class="h-1 w-8 bg-white transform transition-transform duration-300 translate-y-0 -rotate-0">
+            </div>
+            <div id="dot-2" class="h-1 w-8 bg-white scale-100 transform duration-300 transition-transform opacity-100">
+            </div>
+            <div id="dot-3"
+                class="h-1 w-8 bg-white transform transition-transform duration-300 -translate-y-0 rotate-0">
+            </div>
+        </button>
+
+    </header>
+
+    <!-- Float Hamburger Menu  -->
+    <div id="menu"
+        class="font-AC text-white block telefoon:hidden fixed top-20 right-0 z-40 w-64 h-auto rounded-bl-2xl backdrop-blur-lg bg-black/70 border border-gray-800 translate-x-full transition-transform duration-500 ease-in-out shadow-lg">
+        <div class="flex flex-col gap-6 justify-center items-center text-xl p-6">
+            <a href="index.html"
+                class="cursor-pointer hover:text-strong-red transition-all hover:scale-105 scale-100 duration-200 hover:bg-white p-3.5 rounded-2xl">Home</a>
+            <a href="#"
+                class="cursor-pointer hover:text-strong-red transition-all hover:scale-105 scale-100 duration-200 hover:bg-white p-3.5 rounded-2xl">About
+                Us</a>
+            <a href="#"
+                class="cursor-pointer hover:text-strong-red transition-all hover:scale-105 scale-100 duration-200 hover:bg-white p-3.5 rounded-2xl">Contact</a>
+            <a href="#"
+                class="cursor-pointer hover:text-strong-red transition-all hover:scale-105 scale-100 duration-200 hover:bg-white p-3.5 rounded-2xl">New
+                Items</a>
+            <a href="winkelWagen.html" class="w-8 h-8 block telefoon:hidden transition-all hover:scale-105 scale-100 ">
+                <img src="../images/shopping-bag.png" alt="" class="invert w-full h-full" />
+            </a>
+        </div>
+    </div>
+
+    <div class="tabel-container p-3 pt-25 flex  flex-col justify-center items-center overflow-x-auto w-full">
+
+    </div>
+    <script src="clothes.js"></script>
+</body>
+
+</html>
