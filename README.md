@@ -6,6 +6,10 @@ In this webshop, you can buy clothing.
 
 You can clone my project from the Nexed website.
 
+## How to visit the website
+
+[Webshop](https://69aaad805627141c33c9e1e4--heartfelt-sunshine-a3f304.netlify.app/views/)
+
 ## Usage
 
 You can buy clothes from my project.
